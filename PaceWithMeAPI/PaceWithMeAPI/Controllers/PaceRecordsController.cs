@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using PaceWithMeAPI.Models;
+using Tweetinvi;
+using Tweetinvi.Core.Interfaces;
+using System.Collections.Generic;
 
 namespace PaceWithMeAPI.Controllers
 {
@@ -19,9 +19,20 @@ namespace PaceWithMeAPI.Controllers
         /// list all pace records
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<PaceRecord> GetAllPaceRecords()
+        //public IEnumerable<PaceRecord> GetAllPaceRecords()
+        //{
+         //   return paces;
+        //}
+
+        public IEnumerable<Tweet> GetAllPaceRecords()
         {
-            return paces;
+            var appCreds = Auth.SetApplicationOnlyCredentials(Constants.ConsumerKey, Constants.ConsumerSecret);
+            Auth.InitializeApplicationOnlyCredentials(appCreds);
+
+            var matchingTweets = Search.SearchTweets(Constants.Tags);
+            return matchingTweets;
+
+            //return paces;
         }
 
         public IHttpActionResult GetPaceRecord(int id)
