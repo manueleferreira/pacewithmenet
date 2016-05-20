@@ -41,17 +41,20 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('PacelistsCtrl', function ($http) {
+    //$scope.pacelists = paceService.GetPaceList();
+    var vm = this;
+    var base = 'http://localhost:57224/api/GetAllPaceRecords';
+    vm.pacelists = [];
 
-    $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+    vm.load = function load() {
+        $http.get(base).then(function handleResponse(response) {
+            vm.pacelists = response.data.results;
+        });
+    };
+
+    vm.load();
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('PacelistCtrl', function($scope, $stateParams) {
 });
