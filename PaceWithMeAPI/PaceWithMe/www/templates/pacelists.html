@@ -1,7 +1,7 @@
 <ion-view view-title="Pacelists">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="pacelist in vm.pacelists" href="#/app/pacelists/{{pacelist.Id}}">
+      <ion-item ng-repeat="pacelist in pacelists">
         {{pacelist.UserName}} - {{pacelist.Text}}
       </ion-item>
     </ion-list>

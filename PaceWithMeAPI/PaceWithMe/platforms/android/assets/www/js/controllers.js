@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic', 'starter.services'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,20 +41,12 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PacelistsCtrl', function ($http) {
-    //$scope.pacelists = paceService.GetPaceList();
-    var vm = this;
-    var base = 'http://localhost:57224/api/GetAllPaceRecords';
-    vm.pacelists = [];
-
-    vm.load = function load() {
-        $http.get(base).then(function handleResponse(response) {
-            vm.pacelists = response.data.results;
-        });
-    };
-
-    vm.load();
-})
-
-.controller('PacelistCtrl', function($scope, $stateParams) {
-});
+.controller('PacelistsCtrl', ['$scope', 'PaceService',
+    function ($scope, PaceService) {
+        $scope.pacelists = PaceService.GetPaceList().then(
+            function (pacelists) {
+                $scope.pacelists = pacelists;
+            }
+        );
+    }
+]);

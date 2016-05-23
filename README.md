@@ -26,5 +26,5 @@ Para executar os testes unitários deve ser feito:
 Aplicação em Produção
 ------------
 
-O ambiente de produção do sistema utiliza a plataforma Azure (https://azure.microsoft.com/). O link para acessá-la é: 
-<TODO>
+A API está disponível na plataforma Azure (https://azure.microsoft.com/). O link para acessá-la é: 
+http://pacewithme.azurewebsites.net
